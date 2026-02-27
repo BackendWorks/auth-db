@@ -6,5 +6,6 @@ export type {
   CreateUserInput,
   UpdateUserInput,
 } from "./interfaces/user.repository.interface";
-export type { User, Role } from "./interfaces/user.repository.interface";
+export type { User } from "./interfaces/user.repository.interface";
+export { Role } from "./interfaces/user.repository.interface";
 export type { PaginatedResult, QueryOptions } from "./interfaces/base.interface";
