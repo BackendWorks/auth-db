@@ -19,7 +19,7 @@ Both `auth-service` and `auth-worker` must always pin to the **same version rang
 Run all commands from the `packages/auth-db/` directory:
 
 ```bash
-npm run prisma:migrate   # dotenv -e .env.docker -- prisma migrate dev
+npm run prisma:migrate   # dotenv -e .env -- prisma migrate dev
 npm run prisma:generate  # regenerates Prisma client from schema
 npm run prisma:studio    # opens Prisma Studio against the auth DB
 npm run build            # tsc compile → dist/ (run before publishing)
@@ -31,11 +31,7 @@ npm publish              # publishes to GitHub Packages (requires GITHUB_TOKEN)
 The package exposes interfaces, not Prisma types. Apps interact only with the public API:
 
 ```typescript
-import {
-  createAuthDbManager,
-  IAuthDbManager,
-  IUserRepository,
-} from "@backendworks/auth-db";
+import { createAuthDbManager, IAuthDbManager, IUserRepository } from "@backendworks/auth-db";
 
 // Wire up once at module init (NestJS provider factory)
 const dbManager: IAuthDbManager = createAuthDbManager(process.env.DATABASE_URL);

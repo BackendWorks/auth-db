@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-import { User } from "@prisma/client";
+import { PrismaClient, User } from "@prisma/client";
 import {
   IUserRepository,
   CreateUserInput,
@@ -28,11 +27,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async findOne(filter: Partial<User>): Promise<User | null> {
-    return findOne<User>(
-      this.client,
-      "user",
-      filter as Record<string, unknown>,
-    );
+    return findOne<User>(this.client, "user", filter as unknown as Record<string, unknown>);
   }
 
   async findMany(options: QueryOptions): Promise<PaginatedResult<User>> {
@@ -43,20 +38,11 @@ export class UserRepository implements IUserRepository {
   }
 
   async create(data: CreateUserInput): Promise<User> {
-    return createRecord<User>(
-      this.client,
-      "user",
-      data as Record<string, unknown>,
-    );
+    return createRecord<User>(this.client, "user", data as unknown as Record<string, unknown>);
   }
 
   async update(id: string, data: UpdateUserInput): Promise<User> {
-    return updateRecord<User>(
-      this.client,
-      "user",
-      id,
-      data as Record<string, unknown>,
-    );
+    return updateRecord<User>(this.client, "user", id, data as unknown as Record<string, unknown>);
   }
 
   async softDelete(id: string): Promise<User> {
@@ -64,10 +50,6 @@ export class UserRepository implements IUserRepository {
   }
 
   async count(filters?: Partial<User>): Promise<number> {
-    return countRecords(
-      this.client,
-      "user",
-      filters as Record<string, unknown>,
-    );
+    return countRecords(this.client, "user", filters as unknown as Record<string, unknown>);
   }
 }
